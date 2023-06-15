@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import './App.css'
 import axios from 'axios';
@@ -17,7 +17,7 @@ function App() {
   useEffect(() => {
 
     axios('http://localhost:4001/fruits').then((response)=> { 
-      console.log(response);
+      console.log(response.data);
       setFruitArray(response.data)
     })
 
@@ -75,7 +75,7 @@ function App() {
         {fruitJSX}
       </section>
 
-<Veggies />
+      <Veggies />
 
 
     </>

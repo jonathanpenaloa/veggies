@@ -34,7 +34,7 @@ app.post('/fruits', async (req, res) => {
     res.send(databaseResponse)
 })
 
-app.post('/create_veggie', async (req, res) => {
+app.post('/create_veggies', async (req, res) => {
     console.log(req.body);
     let databaseResponse = await Veggies.create(req.body);
     res.send(databaseResponse)
@@ -62,3 +62,4 @@ app.delete('/fruits/:idOfFruit', async (req, res) => {
 app.listen(4001, () => {
     console.log("listening on 4001")
 })
+

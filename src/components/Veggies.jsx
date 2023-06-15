@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import axios from "axios";
 
@@ -12,7 +12,7 @@ function Veggies() {
   const [veggiesArray, setVeggiesArray] = useState([]);
 
   useEffect(() => {
-    axios("/veggies").then((response) => {
+    axios("http://localhost:4001/veggies").then((response) => {
       console.log(response.data);
       setVeggiesArray(response.data);
     });
@@ -23,7 +23,7 @@ function Veggies() {
     console.log(formData);
     axios({
       method: "POST",
-      url: "/create_veggie",
+      url: "http://localhost:4001/create_veggie",
       // goes to the server the app is from!
       data: JSON.stringify(formData)
     });
