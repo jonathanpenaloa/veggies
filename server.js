@@ -2,11 +2,10 @@
 const express = require('express');
 const dotenv = require('dotenv');
 dotenv.config();
-const Veggies = require('./Models/Veggies')
+const Veggie = require('./Models/Veggie')
 const Fruit = require('./Models/Fruit.js');
 const cors = require("cors")
-// now I can use process.env.VARIABLE_NAME
-// when my server starts, I want to connect to my database
+
 require('./config/database.js')
 const app = express();
 app.use(express.json());
@@ -27,7 +26,7 @@ app.get('/fruits', async (req, res) => {
 
 app.get('/veggies', async (req, res) => {
     try {
-        let databaseResponse = await Veggies.find();
+        let databaseResponse = await Veggie.find();
         res.send(databaseResponse)
     }
     catch (err) {
@@ -35,9 +34,6 @@ app.get('/veggies', async (req, res) => {
     }
 });
 
-
-
-// CREATE DATA
 app.post('/fruits', async (req, res) => {
     try {
         console.log(req.body);
@@ -52,7 +48,7 @@ app.post('/fruits', async (req, res) => {
 app.post('/create_veggies', async (req, res) => {
     console.log(req.body);
     try {
-        let databaseResponse = await Veggies.create(req.body);
+        let databaseResponse = await Veggie.create(req.body);
         res.send(databaseResponse)
     }
     catch (err) {
@@ -61,14 +57,11 @@ app.post('/create_veggies', async (req, res) => {
     
 })
 
-
-// UPDATE DATA
 app.put('/fruits/:idOfFruit/:newName', async (req, res) => {
-    // step 1 - get information from request (params, queries, req.body)
     try {
         const idOfFruit = req.params.idOfFruit;
         const newName= req.params.newName;
-        // step 2 use information to make an update request to collection
+ 
         let databaseResponse = await Fruit.findByIdAndUpdate(idOfFruit, {name: newName})
         res.send(databaseResponse)
     }
@@ -78,7 +71,6 @@ app.put('/fruits/:idOfFruit/:newName', async (req, res) => {
     
 })
 
-// DELETE DATA
 app.delete('/fruits/:idOfFruit', async (req, res) => {
     try {
         const idOfFruit = req.params.idOfFruit;

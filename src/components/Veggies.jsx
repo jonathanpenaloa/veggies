@@ -24,12 +24,8 @@ function Veggies() {
     axios({
       method: "POST",
       url: "http://localhost:4001/create_veggie",
-      // goes to the server the app is from!
       data: JSON.stringify(formData)
     });
-    //  user negative values aren't allowed
-
-    // send form data to server create route
   };
 
   const handleChange = (e) => {
